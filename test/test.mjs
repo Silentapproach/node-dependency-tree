@@ -10,6 +10,7 @@ import precinct from 'precinct';
 import sinon from 'sinon';
 import Config from '../lib/config.js';
 import dependencyTree from '../index.js';
+import UrlParamsHandler from '../lib/url-params.js';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -986,6 +987,28 @@ describe('dependencyTree', () => {
           assert.deepEqual(clone.detectiveConfig, detectiveConfig);
         });
       });
+    });
+  });
+  describe('Testing UrlParamsHandler', () => {
+    it('should return the correct relative paths with extensions if present', () => {
+      const urlParamsHandler = new UrlParamsHandler([
+        './a?v=2.2.2',
+        './b.js?v=2.2.2',
+        './c.ts?v=2.2.2'
+      ]);
+      assert.equal(urlParamsHandler.relativePaths[0], './a');
+      assert.equal(urlParamsHandler.relativePaths[1], './b.js');
+      assert.equal(urlParamsHandler.relativePaths[2], './c.ts');
+    });
+    it('should return the correct queries extracted from the paths given', () => {
+      const urlParamsHandler = new UrlParamsHandler([
+        './a?v=2.2.2',
+        './b.js?v=2.2.2',
+        './c.ts?v=2.2.2'
+      ]);
+      assert.deepEqual(urlParamsHandler.queries['./a'], { v: '2.2.2' });
+      assert.deepEqual(urlParamsHandler.queries['./b.js'], { v: '2.2.2' });
+      assert.deepEqual(urlParamsHandler.queries['./c.ts'], { v: '2.2.2' });
     });
   });
 });

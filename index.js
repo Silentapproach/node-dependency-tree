@@ -5,6 +5,7 @@ const { debuglog } = require('node:util');
 const cabinet = require('filing-cabinet');
 const precinct = require('precinct');
 const Config = require('./lib/config.js');
+const UrlParamsHandler = require('./lib/url-params.js');
 
 const debug = debuglog('tree');
 
@@ -93,6 +94,9 @@ module.exports._getDependencies = function(config = {}) {
     debug(error.stack);
     return [];
   }
+
+  const urlParamsHandler = new UrlParamsHandler(dependencies);
+  dependencies = urlParamsHandler.relativePaths;
 
   const resolvedDependencies = [];
 
