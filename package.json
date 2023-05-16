@@ -1,5 +1,5 @@
 {
-  "name": "dependency-tree",
+  "name": "silentapproach-dependency-tree",
   "version": "10.0.7",
   "description": "Get the dependency tree of a module",
   "main": "index.js",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dependents/node-dependency-tree.git"
+    "url": "git+https://github.com/Silentapproach/node-dependency-tree.git"
   },
   "keywords": [
     "dependency",
@@ -41,10 +41,7 @@
   ],
   "author": "Joel Kemp <joel@mrjoelkemp.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dependents/node-dependency-tree/issues"
-  },
-  "homepage": "https://github.com/dependents/node-dependency-tree",
+  "homepage": "",
   "engines": {
     "node": ">=14"
   },
@@ -97,5 +94,8 @@
       "unicorn/prefer-top-level-await": "off",
       "unicorn/prevent-abbreviations": "off"
     }
+  },
+  "publishConfig": {
+    "silentapproach:registry": "https://npm.pkg.github.com"
   }
 }
